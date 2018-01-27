@@ -22,52 +22,13 @@ mongodb.MongoClient.connect(uri, function(err, db) {
    var dbname = db.db('mylocaldb');
 
   volunteers = dbname.collection('Volunteer');
-
-    var volunteersList = [
-
-    {
-
-        name: "CHATEAU DE SAINT COSME",
-
-        year: "2009",
-
-        grapes: "Grenache / Syrah",
-
-        country: "France",
-
-        region: "Southern Rhone",
-
-        description: "The aromas of fruit and spice...",
-
-        picture: "saint_cosme.jpg"
-
-    },
-
-    {
-
-        name: "LAN RIOJA CRIANZA",
-
-        year: "2006",
-
-        grapes: "Tempranillo",
-
-        country: "Spain",
-
-        region: "Rioja",
-
-        description: "A resurgence of interest in boutique vineyards...",
-
-        picture: "lan_rioja.jpg"
-
-    }];
-
+});
+   
 /*
 volunteers.insert(volunteersList, function (err, result) {
         if(err) throw err;
 });
 */
-
-});
 
 
 exports.findAll = function(req, res) {
@@ -81,7 +42,7 @@ exports.findAll = function(req, res) {
 
 exports.findById = function(req, res){
 	    var id = req.params.id;
-	volunteers.find({country : {$eq : id}}).toArray(function(err, items) {
+	volunteers.find({name : {$eq : id}}).toArray(function(err, items) {
 
             res.send(items);
 
