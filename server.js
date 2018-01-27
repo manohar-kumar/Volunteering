@@ -1,7 +1,7 @@
 
 var express = require('express'),
 
-    wine = require('./wine');
+    volunteer = require('./volunteer');
 
 
 
@@ -19,11 +19,11 @@ app.configure(function () {
 
 
 
-app.get('/wines', wine.findAll);
+app.get('/volunteers', volunteer.findAll);
 
-app.get('/wines/:id', wine.findById);
+app.get('/volunteers/:id', volunteer.findById);
 
-app.post('/wines', wine.addWine);
+app.post('/volunteers', volunteer.addVolunteer);
 
 
 

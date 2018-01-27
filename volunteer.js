@@ -1,8 +1,8 @@
 var mongodb = require('mongodb');
 
 
-var uri = 'mongodb://manohar:helloworld@ds213688.mlab.com:13688/volunteer';
-var wines;
+var uri = 'mongodb://kmanorma:tfi123456@ds213338.mlab.com:13338/mylocaldb';
+var volunteers;
 mongodb.MongoClient.connect(uri, function(err, db) {
 
   
@@ -19,11 +19,11 @@ mongodb.MongoClient.connect(uri, function(err, db) {
 
    */
 
-   var dbname = db.db('volunteer');
+   var dbname = db.db('mylocaldb');
 
-  wines = dbname.collection('wines');
+  volunteers = dbname.collection('Volunteer');
 
-    var winesList = [
+    var volunteersList = [
 
     {
 
@@ -62,7 +62,7 @@ mongodb.MongoClient.connect(uri, function(err, db) {
     }];
 
 /*
-wines.insert(winesList, function (err, result) {
+volunteers.insert(volunteersList, function (err, result) {
         if(err) throw err;
 });
 */
@@ -72,7 +72,7 @@ wines.insert(winesList, function (err, result) {
 
 exports.findAll = function(req, res) {
 
-    wines.find().toArray(function(err, items) {
+    volunteers.find().toArray(function(err, items) {
 
             res.send(items);
 
@@ -81,7 +81,7 @@ exports.findAll = function(req, res) {
 
 exports.findById = function(req, res){
 	    var id = req.params.id;
-	wines.find({country : {$eq : id}}).toArray(function(err, items) {
+	volunteers.find({country : {$eq : id}}).toArray(function(err, items) {
 
             res.send(items);
 
@@ -91,13 +91,13 @@ exports.findById = function(req, res){
 
 
 
-exports.addWine = function(req, res) {
+exports.addVolunteer = function(req, res) {
 
-    var wineInput = req.body;
+    var volunteerInput = req.body;
 
-    console.log('Adding wine: ' + JSON.stringify(wineInput));
+    console.log('Adding volunteer: ' + JSON.stringify(volunteerInput));
 
-    wines.insert(wineInput);
+    volunteers.insert(volunteerInput);
     res.send("Done");
    };
 
